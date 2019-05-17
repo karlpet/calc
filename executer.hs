@@ -4,13 +4,13 @@ import Control.Monad.State
 
 import Types
 
-getOpFunc :: OpType -> (Int -> Int -> Int)
+getOpFunc :: OpType -> (Double -> Double -> Double)
 getOpFunc ADD = (+)
 getOpFunc SUB = (-)
 getOpFunc MUL = (*)
-getOpFunc DIV = (div)
+getOpFunc DIV = (/)
 
-evalExpression :: [Tree] -> State Int Int
+evalExpression :: [Tree] -> State Double Double
 evalExpression [] = do
   (n) <- get
   return (n)
@@ -21,5 +21,5 @@ evalExpression (tree : forest) = do
     (Node op forest') -> put ((getOpFunc op) n (execute forest'))
   evalExpression forest
 
-execute :: [Tree] -> Int 
+execute :: [Tree] -> Double 
 execute tree = evalState (evalExpression tree) 0

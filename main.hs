@@ -6,7 +6,7 @@ import Tokenizer
 import Parser
 import Executer
 
-calculate :: String -> Int
+calculate :: String -> Double
 calculate = execute . parse . tokenize
 
 main :: IO ()

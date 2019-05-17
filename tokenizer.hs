@@ -7,8 +7,8 @@ import Types
 
 splitter :: String -> [String]
 splitter "" = []
-splitter str = if length digits > 0 then
-    (digits : splitter digitsremain)
+splitter str = if length digits' > 0 then
+    (digits' : splitter digitsremain')
   else
     if head str == ' ' then
       splitter (tail str)
@@ -17,6 +17,19 @@ splitter str = if length digits > 0 then
   where
     digits = takeWhile isDigit str
     digitsremain = dropWhile isDigit str
+    hasDecimal = digitsremain /= [] && (head digitsremain == '.')
+    digits' = if hasDecimal then
+        digits ++ "." ++ (takeWhile isDigit (tail digitsremain))
+      else
+        digits
+    digitsremain' = if hasDecimal then
+        dropWhile isDigit (tail digitsremain)
+      else
+        digitsremain
+    
+
+      
+    
      
 getToken :: String -> State (Int, [Token]) [Token]
 getToken str = do
@@ -28,7 +41,7 @@ getToken str = do
     "/" -> put (n, tokens ++ [OP DIV])
     "(" -> put (n + 1, tokens ++ [BEGIN_PARAN n])
     ")" -> put (n - 1, tokens ++ [END_PARAN (n - 1)])
-    x   -> put (n, tokens ++ [NUM (read x :: Int)])
+    x   -> put (n, tokens ++ [NUM (read x :: Double)])
   (_, tokens') <- get
   return (tokens')
 
