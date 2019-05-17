@@ -5,8 +5,6 @@ import Data.Char (isDigit)
 
 import Types
 
-
--- split input string into list of strings "5 + 25" -> ["5", "+", "25"]
 splitter :: String -> [String]
 splitter "" = []
 splitter str = if length digits > 0 then
@@ -32,7 +30,6 @@ getToken str = do
   (_, tokens') <- get
   return (tokens')
 
--- tokenize "5 + 2" -> [NUM 5, OP ADD, NUM 2]
 tokenize :: String -> [Token]
 tokenize string = evalState tokens (0, [])
   where

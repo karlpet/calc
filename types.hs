@@ -1,6 +1,6 @@
 module Types where
 
-data OpType = ADD | SUB
+data OpType = ADD | SUB | MULT | DIV
   deriving(Show, Eq)
 
 data Token = NUM Int | OP OpType | BEGIN_PARAN Int | END_PARAN Int
