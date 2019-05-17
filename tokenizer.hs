@@ -33,7 +33,8 @@ getToken str = do
   return (tokens')
 
 tokenize :: String -> [Token]
-tokenize string = evalState tokens (0, [])
+tokenize string = tokens
   where
     lexlist = splitter string
-    tokens = foldl (\x y -> x >> getToken y) (getToken . head $ lexlist) (tail lexlist)
+    states = foldl (\x y -> x >> getToken y) (getToken . head $ lexlist) (tail lexlist)
+    tokens = evalState states (0, [])
