@@ -24,6 +24,8 @@ getToken str = do
   case str of
     "+" -> put (n, tokens ++ [OP ADD])
     "-" -> put (n, tokens ++ [OP SUB])
+    "*" -> put (n, tokens ++ [OP MUL])
+    "/" -> put (n, tokens ++ [OP DIV])
     "(" -> put (n + 1, tokens ++ [BEGIN_PARAN n])
     ")" -> put (n - 1, tokens ++ [END_PARAN (n - 1)])
     x   -> put (n, tokens ++ [NUM (read x :: Int)])

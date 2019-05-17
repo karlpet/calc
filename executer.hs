@@ -8,7 +8,7 @@ getOpFunc :: OpType -> (Int -> Int -> Int)
 getOpFunc ADD = (+)
 getOpFunc SUB = (-)
 getOpFunc MUL = (*)
-getOpFunc DIV = (/)
+getOpFunc DIV = (div)
 
 evalExpression :: [Tree] -> State Int Int
 evalExpression [] = do
