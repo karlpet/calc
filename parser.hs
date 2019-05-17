@@ -10,10 +10,6 @@ module Parser where
 
 import Types
 
-getOpFunc :: OpType -> (Int -> Int -> Int)
-getOpFunc ADD = (+)
-getOpFunc SUB = (-)
-
 parseTree :: [Token] -> [Tree]
 parseTree [] = []
 parseTree ((OP op) : (NUM n) : tokens) = ((Leaf op n) : parseTree tokens)
