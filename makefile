@@ -1,2 +1,3 @@
 all:
-  ghc -o calc calc.hs
+	ghc -o calc main.hs
+	rm *.{hi,o}
